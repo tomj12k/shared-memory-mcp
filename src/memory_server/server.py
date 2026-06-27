@@ -82,7 +82,7 @@ def memory_reindex() -> str:
 
 
 def main() -> None:
-    mcp.run(transport="sse", host="0.0.0.0", port=config.SERVER_PORT)
+    mcp.run(transport="http", host="0.0.0.0", port=config.SERVER_PORT)
 
 
 if __name__ == "__main__":
