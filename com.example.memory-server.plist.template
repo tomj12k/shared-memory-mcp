@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.piecakes.memory-server</string>
+    <string>com.yourname.memory-server</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/piecakes/.local/bin/uv</string>
+        <string>/Users/YOU/.local/bin/uv</string>
         <string>run</string>
         <string>--project</string>
-        <string>/Users/piecakes/memory-server</string>
+        <string>/Users/YOU/memory-server</string>
         <string>memory-server</string>
     </array>
     <key>WorkingDirectory</key>
-    <string>/Users/piecakes/memory-server</string>
+    <string>/Users/YOU/memory-server</string>
     <key>EnvironmentVariables</key>
     <dict>
         <key>MEMORIES_DIR</key>
-        <string>/Users/piecakes/memories</string>
+        <string>/Users/YOU/memories</string>
         <key>CHROMA_DIR</key>
-        <string>/Users/piecakes/chroma</string>
+        <string>/Users/YOU/chroma</string>
         <key>CACHE_DIR</key>
-        <string>/Users/piecakes/.memory-cache</string>
+        <string>/Users/YOU/.memory-cache</string>
         <key>SPARK_BASE_URL</key>
-        <string>http://192.168.68.136:8001/v1</string>
+        <string>http://127.0.0.1:18001/v1</string>
         <key>EMBEDDING_MODEL</key>
         <string>nomic-embed-text</string>
     </dict>
@@ -33,8 +32,8 @@
     <key>KeepAlive</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/Users/piecakes/memory-server/memory-server.log</string>
+    <string>/Users/YOU/memory-server/memory-server.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/piecakes/memory-server/memory-server.log</string>
+    <string>/Users/YOU/memory-server/memory-server.log</string>
 </dict>
 </plist>

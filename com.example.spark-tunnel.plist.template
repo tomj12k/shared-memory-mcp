@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.yourname.spark-tunnel</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/ssh</string>
+        <string>-N</string>
+        <string>-L</string>
+        <string>18001:localhost:8001</string>
+        <string>-o</string>
+        <string>StrictHostKeyChecking=no</string>
+        <string>-o</string>
+        <string>ExitOnForwardFailure=yes</string>
+        <string>-o</string>
+        <string>ServerAliveInterval=30</string>
+        <string>USER@EMBEDDING_SERVER_IP</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/YOU/memory-server/spark-tunnel.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/YOU/memory-server/spark-tunnel.log</string>
+</dict>
+</plist>
