@@ -24,3 +24,6 @@ package = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.scripts]
+memory-server = "memory_server.server:main"
