@@ -24,6 +24,14 @@ def _embed_texts(texts: list[str]) -> list[list[float]]:
     return [item.embedding for item in response.data]
 
 
+def _try_embed_texts(texts: list[str]) -> list[list[float]] | None:
+    """Returns None if the embedding server is unreachable."""
+    try:
+        return _embed_texts(texts)
+    except Exception:
+        return None
+
+
 def _chunk(text: str) -> list[str]:
     chunks = []
     start = 0
@@ -45,7 +53,9 @@ def upsert_memory(name: str, content: str, is_archive: bool, file_path: str) -> 
         pass
 
     chunks = _chunk(content)
-    embeddings = _embed_texts(chunks)
+    embeddings = _try_embed_texts(chunks)
+    if embeddings is None:
+        return  # Spark unreachable; memory_reindex will catch up later
     ids = [f"{name}__chunk_{i}" for i in range(len(chunks))]
     metadatas = [
         {"name": name, "is_archive": is_archive, "file_path": file_path, "chunk_index": i}
@@ -66,8 +76,10 @@ def delete_memory_vectors(name: str) -> None:
 
 def search_memories(query: str, limit: int = 5) -> list[dict]:
     col = _collection()
-    q_embedding = _embed_texts([query])[0]
-    results = col.query(query_embeddings=[q_embedding], n_results=min(limit, col.count() or 1))
+    q_emb_list = _try_embed_texts([query])
+    if q_emb_list is None:
+        return []
+    results = col.query(query_embeddings=[q_emb_list[0]], n_results=min(limit, col.count() or 1))
     output = []
     seen_names: set[str] = set()
     for doc, meta, distance in zip(
